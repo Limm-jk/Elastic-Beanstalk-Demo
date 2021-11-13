@@ -47,7 +47,7 @@ jobs:
         S3_ELASTIC_BEANSTALK: ${{ secrets.S3_ELASTIC_BEANSTALK }}
       run: |
           aws elasticbeanstalk create-application-version \
-            --application-name $APPLICATION_NAME \
+            --application-name $EB_APPLICATION_NAME \
             --version-label $APPLICATION_VERSION \
             --source-bundle S3Bucket=$S3_ELASTIC_BEANSTALK,S3Key=$DEPLOY_SRC \
             --auto-create-application
