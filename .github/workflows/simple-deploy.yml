@@ -54,6 +54,6 @@ jobs:
             --auto-create-application
             
           aws elasticbeanstalk update-environment \
-            -—application-name $EB_APPLICATION_NAME \
-            -—environment-name $EB_ENV_NAME \
-            -—version-label $APPLICATION_VERSION
+            --application-name $EB_APPLICATION_NAME \
+            --environment-name $EB_ENV_NAME \
+            --version-label $APPLICATION_VERSION
