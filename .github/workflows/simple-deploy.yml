@@ -27,3 +27,14 @@ jobs:
         mv out/main main
         zip $ARCHIVE_NAME.zip main Dockerfile
         echo "::set-output name=deploy_src::$ARCHIVE_NAME.zip"
+        
+    - name: Upload S3
+      env:
+        DEPLOY_SRC: ${{ steps.build.outputs.deploy_src }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        S3_ELASTIC_BEANSTALK: ${{ secrets.S3_ELASTIC_BEANSTALK }}
+      run: |
+          aws s3 cp \
+            --region ap-northeast-2 \
+            $DEPLOY_SRC s3://$S3_ELASTIC_BEANSTALK
