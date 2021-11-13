@@ -2,9 +2,7 @@ name: Go
 
 on:
   push:
-    branches: [ main ]
-    tags:
-      - build.*
+    branches: [ main, step2 ]
 
 jobs:
 
