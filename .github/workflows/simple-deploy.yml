@@ -5,6 +5,7 @@ on:
     branches: [ main, step2 ]
 
 jobs:
+
   deploy:
     runs-on: ubuntu-18.04
     steps:
