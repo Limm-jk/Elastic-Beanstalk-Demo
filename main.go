@@ -15,7 +15,7 @@ type Dictionary map[string]interface{}
 
 func main() {
 	http.HandleFunc("/", root)
-	//http.HandleFunc("/heart", drawHeart)
+	http.HandleFunc("/heart", drawHeart)
 	fmt.Println("http listen :1312")
 	err := http.ListenAndServe(":1312", nil)
 	if err != nil {
