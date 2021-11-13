@@ -1,0 +1,27 @@
+name: Go
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17
+
+    - name: Build, Zip
+      id: build
+      env:
+        ARCHIVE_NAME: ${{ github.sha }}
+      run: | 
+        make build
+        mv out/main main
+        zip $ARCHIVE_NAME.zip main Dockerfile
+        echo "::set-output name=deploy_src::$ARCHIVE_NAME.zip"
